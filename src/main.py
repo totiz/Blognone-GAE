@@ -237,17 +237,17 @@ class Get_Entry(webapp.RequestHandler):
         entries.filter('entryID == ', entry_id)
         
         # get comment
-        all_comment = '<table border="1"><tr><td> ' + 'http://www.blognone.com/news/' + str(entry_id) + '</td></tr>\n'
+        #all_comment = '<table border="1"><tr><td> ' + 'http://www.blognone.com/news/' + str(entry_id) + '</td></tr>\n'
         CommentSpider = Comment_Spider('http://www.blognone.com/news/' + str(entry_id))
-        for comment in CommentSpider.Comments:
-            all_comment = all_comment + '<tr><td>' + comment + '</td></tr>\n'
-        all_comment = all_comment + '</table>'
+        #for comment in CommentSpider.Comments:
+        #    all_comment = all_comment + '<tr><td>' + comment + '</td></tr>\n'
+        #all_comment = all_comment + '</table>'
         
         entry = entries[0]
         entry_json = {
             'id': entry.key().id(),
             'title': entry.title,
-            'description': entry.description + all_comment,
+            'description': entry.description,
             'comment': CommentSpider.Comments,
             'url': entry.url,
             'author': entry.author

@@ -51,7 +51,7 @@ class Comment_Spider(HTMLParser):
         req = urlfetch.fetch( url )
         self.Comments = []
         self.comment_id = -1
-        self.comment_data = ''
+        self.comment_data = []
         self.div_stage = ''
         #self.feed(req.content)
         self.feed(unicode(req.content, 'utf-8'))
@@ -132,21 +132,20 @@ class Comment_Spider(HTMLParser):
             elif self.div_stage == 'comment clear-block':
                 #self.comment_data = self.comment_data + ' ' + self.comment_id
                 #self.Comments.append(self.comment_id)
-                self.comment_data = self.comment_data + ' <span style="color:#999999;">' + self.comment_id + '</span>'
+                #self.comment_data = self.comment_data + ' <span style="color:#999999;">' + self.comment_id + '</span>'
+                self.comment_data.append(self.comment_id)
                 self.Comments.append(self.comment_data)
-                self.comment_data = ''
+                self.comment_data = []
                 self.comment_id = -1
                 self.div_stage = ''
             
         #self.comment_id = -1
         
     def handle_data(self, data):
-        if self.div_stage == 'comment-content' and data.strip() <> '':
-            if self.comment_data == '':
-                self.comment_data = data
-            else:
-                self.comment_data = self.comment_data + '\n<br>' + data
+        self.comment_data.append(data)
+        #if self.div_stage == 'comment-content' and data.strip() <> '':
+        #    self.comment_data.append(data)
                 
-        if self.div_stage == 'comment-info' and data.find('By:') <> -1:
-            self.comment_data = data + '\n<br>'
+        #if self.div_stage == 'comment-info' and data.find('By:') <> -1:
+        #    self.comment_data = data + '\n<br>'
 
