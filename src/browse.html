@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Upload Files Portal</title>
+
+</head>
+<body>
+    <table border="1">
+        <thead>
+        	<td><b>Key</b></td>
+        	<td><b>Entry ID</b></td>
+            <td><b>Title</b></td>
+            <td><b>Author</b></td>
+            <td><b>Date</b></td>
+            <td><b>Url</b></td>
+            <td><b>Thumbnail Url</b></td>
+        </thead>
+    {% for entry in entries %}
+        <tr>
+        	<td>{{ entry.key.id }}</td>
+        	<td>{{ entry.entryID }}</td>
+            <td><a href='{{ entry.url }}'>{{ entry.title }}</a></td>
+            <td>{{ entry.author }}</td>
+            <td>{{ entry.date }}</td>
+            <td>{{ entry.url }}</td>
+            <td>{{ entry.thumbnailURL }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
+
+

@@ -1,0 +1,4 @@
+cron:
+- description: fetching feeds
+  url: /fetch
+  schedule: every 1 minutes
