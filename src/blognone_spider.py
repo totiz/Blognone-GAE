@@ -142,11 +142,10 @@ class Comment_Spider(HTMLParser):
         #self.comment_id = -1
         
     def handle_data(self, data):
-        if data.strip() <> '':
+        if self.div_stage == 'comment-content' and data.strip() <> '':
             self.comment_data.append(data)
-        #if self.div_stage == 'comment-content' and data.strip() <> '':
-        #    self.comment_data.append(data)
                 
-        #if self.div_stage == 'comment-info' and data.find('By:') <> -1:
-        #    self.comment_data = data + '\n<br>'
+        if self.div_stage == 'comment-info' and data.find('By:') <> -1:
+            #self.comment_data = data + '\n<br>'
+            self.comment_data.append(data)
 
