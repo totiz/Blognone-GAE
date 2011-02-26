@@ -251,7 +251,7 @@ class Get_Entry(webapp.RequestHandler):
             'comment': CommentSpider.Comments,
             'url': entry.url,
             'author': entry.author
-            }
+            } 
         
         self.response.out.write(json.dumps(entry_json))
         
