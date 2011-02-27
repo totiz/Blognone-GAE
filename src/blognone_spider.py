@@ -155,6 +155,10 @@ class Comment_Spider(HTMLParser):
                 
         if self.div_stage == 'comment-info' and data.find('By:') <> -1:
             #self.comment_data = data + '\n<br>'
-            self.comment_author = data
+            #fill out \n and space bar
+            data = data.strip()
+            #cut off By: 
+            data = data[4:]
+            self.comment_author = data.strip()
             #self.comment_data.append(data)
 
